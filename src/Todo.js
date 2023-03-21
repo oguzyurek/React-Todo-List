@@ -5,7 +5,13 @@ class Todo extends Component {
     super(props);
   }
   render() {
-    return <div>Todo</div>;
+    return (
+      <div>
+        <button>Edit</button>
+        <button>X</button>
+        <li>{this.props.task}</li>
+      </div>
+    );
   }
 }
 
