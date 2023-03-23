@@ -1,6 +1,7 @@
 import { toBeInTheDOM } from "@testing-library/jest-dom/dist/matchers";
 import React, { Component } from "react";
 import Todo from "./Todo";
+import { v4 as uuidv4 } from "uuid";
 
 class Newtodoform extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Newtodoform extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     console.log("Submitted!!!");
-    this.props.createTodo(this.state);
+    this.props.createTodo({ ...this.state, id: uuidv4() });
     this.setState({ task: "" });
   }
 
