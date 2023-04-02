@@ -25,8 +25,9 @@ class Todo extends Component {
 
   handleUpdate(evt) {
     evt.preventDefault();
+
     this.props.updateTodo(this.props.id, this.state.task);
-    this.setState({ isEditting: !this.state.isEditting });
+    this.setState({ isEditing: false });
   }
 
   handleChange(evt) {
@@ -46,6 +47,7 @@ class Todo extends Component {
               id="task"
               name="task"
               value={this.state.task}
+              onChange={this.handleChange}
             ></input>
             <button type="submit">Save</button>
           </form>
