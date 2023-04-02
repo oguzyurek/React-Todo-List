@@ -8,6 +8,11 @@ class Todo extends Component {
     this.toggleForm = this.toggleForm.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.updateDone = this.updateDone.bind(this);
+  }
+
+  updateDone(evt) {
+    this.props.updateDone(this.props.id);
   }
 
   handleRemove() {
@@ -21,6 +26,7 @@ class Todo extends Component {
   handleUpdate(evt) {
     evt.preventDefault();
     this.props.updateTodo(this.props.id, this.state.task);
+    this.setState({ isEditting: !this.state.isEditting });
   }
 
   handleChange(evt) {
@@ -40,7 +46,6 @@ class Todo extends Component {
               id="task"
               name="task"
               value={this.state.task}
-              onChange={this.handleChange}
             ></input>
             <button type="submit">Save</button>
           </form>
@@ -56,7 +61,12 @@ class Todo extends Component {
     return (
       <div>
         <div>{result}</div>
-        <li>{this.props.task}</li>
+        <li
+          className={this.props.completed ? "done" : "notdone"}
+          onClick={this.updateDone}
+        >
+          {this.props.task}
+        </li>
         <div>
           {!this.state.isEditting ? button : ""}{" "}
           <button onClick={this.handleRemove}>X</button>
